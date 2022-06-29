@@ -1,0 +1,70 @@
+@mixin backgroundImg($imagen) {
+    background: {
+        image: url('../img/'+$imagen);
+        repeat: no-repeat;
+        size: cover;
+        position: center;
+    }
+}
+
+@mixin backgroundColor($color) {
+    background: {
+        color: $color;
+    }
+}
+
+@mixin botones($cBordes, $cTexto, $cFondo) {
+    &::after,
+    &::before {
+        content: '';
+        width: 0%;
+        height: 0%;
+        position: absolute;
+        transition: all .1s .4s;
+        z-index: -1;
+    }
+    &::after {
+        border: {
+            top: 2px solid $cBordes;
+            left: 2px solid $cBordes;
+        }
+        top: -21px;
+        left: -2px;
+    }
+    &::before {
+        border: {
+            bottom: 2px solid $cBordes;
+            right: 2px solid $cBordes;;
+        }
+        bottom: -21px;
+        right: -2px;
+    }
+    a {
+        padding: 20px 50px;
+        background: {
+            color: rgba(255,255,255,.5);
+        }
+        color: $cTexto;
+        text: {
+            decoration: none;
+        }
+        font: {
+            family: sans-serif;
+        }
+        transition: all .1s .2s;
+        z-index: 1000;
+    }
+    &:hover::after,
+    &:hover::before {
+        width: 100%;
+        height: 58px;
+        transition: all .1s;
+    }
+    &:hover {
+        a {
+            background: {
+                color: $cFondo;
+            }
+        }
+    }
+}
